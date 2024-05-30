@@ -14,7 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("../../database/mongoose"));
 const Users_1 = __importDefault(require("../../database/models/Users"));
+const auth_1 = require("../../auth");
 const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const saltRounds = 5;
+    const passwordHash = yield auth_1.authUtil.generatePasswordHash(req.body.password, saltRounds);
     try {
         // Creating new user data
         const newUserData = {
@@ -22,7 +25,7 @@ const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             lastName: req.body.lastName,
             userName: req.body.userName,
             emailAddress: req.body.emailAddress,
-            password: req.body.password
+            password: passwordHash
         };
         yield (0, mongoose_1.default)();
         // Inserting new user into database

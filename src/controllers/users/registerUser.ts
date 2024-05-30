@@ -1,9 +1,12 @@
 import { Request, Response } from 'express';
 import mongooseConnect from '../../database/mongoose';
 import User from '../../database/models/Users';
-import { uuid } from 'uuidv4';
-const registerUser = async (req: Request, res: Response) => {
+import { authUtil } from '../../auth';
 
+const registerUser = async (req: Request, res: Response) => {
+    
+    const saltRounds = 5;
+    const passwordHash = await authUtil.generatePasswordHash(req.body.password, saltRounds)
 
     try {
 
@@ -13,7 +16,7 @@ const registerUser = async (req: Request, res: Response) => {
             lastName: req.body.lastName,
             userName: req.body.userName,
             emailAddress: req.body.emailAddress,
-            password: req.body.password
+            password: passwordHash
         }; 
 
         await mongooseConnect();
