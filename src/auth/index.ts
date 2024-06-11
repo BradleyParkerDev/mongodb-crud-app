@@ -1,15 +1,14 @@
 // hashing
 import generatePasswordHash from "./hashing/generatePasswordHash";
 
-// tokens
-import compareUserRefreshToken from "./tokens/compareUserRefreshToken";
-import generateUserTokens from "./tokens/generateUserTokens";
-import getTokenExpiration from "./tokens/getTokenExpiration";
-import verifyToken from "./tokens/verifyToken";
+//  middleware
+import verifyUserAccessToken from "./middleware/verifyUserAccessToken";
+
+// token
+import generateAccessToken from "./token/generateAccessTokens";
 
 // validation
 import validatePassword from "./validation/validatePassword";
-
 
 
 
@@ -18,13 +17,10 @@ export const authUtil =  {
     generatePasswordHash,
 
     // middleware
-
-    // tokens
-    compareUserRefreshToken,
-    generateUserTokens,
-    getTokenExpiration,
-    verifyToken,
-
+    verifyUserAccessToken,
+    
+    // token
+    generateAccessToken,
 
     // validation
     validatePassword

@@ -35,7 +35,12 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(401).json({ success: false, message: 'Password was incorrect.' });
     }
     if (passwordValid) {
-        res.status(200).json({ message: "User has successfully logged in!", foundUser: foundUser });
+        const accessTokenUserData = {
+            userId: foundUser.id,
+            emailAddress: foundUser.emailAddress
+        };
+        const accessToken = yield auth_1.authUtil.generateAccessToken(accessTokenUserData);
+        return res.status(200).json({ message: "User has successfully logged in!", accessToken: accessToken });
     }
 });
 exports.default = loginUser;

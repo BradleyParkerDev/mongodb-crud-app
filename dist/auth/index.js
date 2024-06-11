@@ -6,22 +6,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.authUtil = void 0;
 // hashing
 const generatePasswordHash_1 = __importDefault(require("./hashing/generatePasswordHash"));
-// tokens
-const compareUserRefreshToken_1 = __importDefault(require("./tokens/compareUserRefreshToken"));
-const generateUserTokens_1 = __importDefault(require("./tokens/generateUserTokens"));
-const getTokenExpiration_1 = __importDefault(require("./tokens/getTokenExpiration"));
-const verifyToken_1 = __importDefault(require("./tokens/verifyToken"));
+//  middleware
+const verifyUserAccessToken_1 = __importDefault(require("./middleware/verifyUserAccessToken"));
+// token
+const generateAccessTokens_1 = __importDefault(require("./token/generateAccessTokens"));
 // validation
 const validatePassword_1 = __importDefault(require("./validation/validatePassword"));
 exports.authUtil = {
     // hashing
     generatePasswordHash: generatePasswordHash_1.default,
     // middleware
-    // tokens
-    compareUserRefreshToken: compareUserRefreshToken_1.default,
-    generateUserTokens: generateUserTokens_1.default,
-    getTokenExpiration: getTokenExpiration_1.default,
-    verifyToken: verifyToken_1.default,
+    verifyUserAccessToken: verifyUserAccessToken_1.default,
+    // token
+    generateAccessToken: generateAccessTokens_1.default,
     // validation
     validatePassword: validatePassword_1.default
 };

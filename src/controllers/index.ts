@@ -1,6 +1,5 @@
 // auth controller imports
 import loginUser from "./auth/loginUser";
-import refreshUserAccessToken from "./auth/refreshUserAccessToken";
 
 
 // users controller imports 
@@ -13,8 +12,7 @@ import deleteUser from "./users/deleteUser";
 
 // export authController
 export const authController = {
-    loginUser,
-    refreshUserAccessToken
+    loginUser
 }
 
 // export usersController
