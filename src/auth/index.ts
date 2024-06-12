@@ -1,11 +1,12 @@
+// accessToken
+import generateAccessToken from "./accessToken/generateAccessToken";
+
 // hashing
 import generatePasswordHash from "./hashing/generatePasswordHash";
 
 //  middleware
-import verifyUserAccessToken from "./middleware/verifyUserAccessToken";
+import authorizeUser from "./middleware/authorizeUser";
 
-// token
-import generateAccessToken from "./token/generateAccessToken";
 
 // validation
 import validatePassword from "./validation/validatePassword";
@@ -13,14 +14,15 @@ import validatePassword from "./validation/validatePassword";
 
 
 export const authUtil =  {
+
+    // accessToken
+    generateAccessToken,
+
     // hashing
     generatePasswordHash,
 
     // middleware
-    verifyUserAccessToken,
-    
-    // token
-    generateAccessToken,
+    authorizeUser,
 
     // validation
     validatePassword

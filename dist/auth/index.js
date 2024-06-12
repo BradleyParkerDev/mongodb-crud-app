@@ -4,21 +4,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authUtil = void 0;
+// accessToken
+const generateAccessToken_1 = __importDefault(require("./accessToken/generateAccessToken"));
 // hashing
 const generatePasswordHash_1 = __importDefault(require("./hashing/generatePasswordHash"));
 //  middleware
-const verifyUserAccessToken_1 = __importDefault(require("./middleware/verifyUserAccessToken"));
-// token
-const generateAccessToken_1 = __importDefault(require("./token/generateAccessToken"));
+const authorizeUser_1 = __importDefault(require("./middleware/authorizeUser"));
 // validation
 const validatePassword_1 = __importDefault(require("./validation/validatePassword"));
 exports.authUtil = {
+    // accessToken
+    generateAccessToken: generateAccessToken_1.default,
     // hashing
     generatePasswordHash: generatePasswordHash_1.default,
     // middleware
-    verifyUserAccessToken: verifyUserAccessToken_1.default,
-    // token
-    generateAccessToken: generateAccessToken_1.default,
+    authorizeUser: authorizeUser_1.default,
     // validation
     validatePassword: validatePassword_1.default
 };

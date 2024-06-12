@@ -15,10 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Users_1 = __importDefault(require("../../database/models/Users"));
 const mongoose_1 = __importDefault(require("../../database/mongoose"));
 const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userId = req.body.id;
+    var _a, _b;
     try {
+        // Ensure req.decoded is set by the authorizeUser middleware
+        const id = (_b = (_a = req.decoded) === null || _a === void 0 ? void 0 : _a.userData) === null || _b === void 0 ? void 0 : _b.userId;
+        if (!id) {
+            return res.status(400).json({ message: "User ID is missing from request" });
+        }
         yield (0, mongoose_1.default)();
-        const response = yield Users_1.default.deleteOne({ id: userId }); // Ensure this is your custom user ID field
+        const response = yield Users_1.default.deleteOne({ id: id }); // Ensure this is your custom user ID field
         res.json({ message: 'User successfully deleted!', response: response });
     }
     catch (error) {

@@ -15,10 +15,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Users_1 = __importDefault(require("../../database/models/Users"));
 const mongoose_1 = __importDefault(require("../../database/mongoose"));
 const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userId = req.body.id;
+    var _a, _b;
+    console.log(req.decoded);
     try {
+        // Ensure req.decoded is set by the authorizeUser middleware
+        const id = (_b = (_a = req.decoded) === null || _a === void 0 ? void 0 : _a.userData) === null || _b === void 0 ? void 0 : _b.userId;
+        if (!id) {
+            return res.status(400).json({ message: "User ID is missing from request" });
+        }
         yield (0, mongoose_1.default)();
-        const foundUser = yield Users_1.default.findOne({ id: userId });
+        const foundUser = yield Users_1.default.findOne({ id: id });
+        if (!foundUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
         const user = {
             id: foundUser.id,
             emailAddress: foundUser.emailAddress,
@@ -28,10 +37,11 @@ const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             userImage: foundUser.userImage,
             lastUpdated: foundUser.lastUpdated
         };
-        res.status(200).json({ message: "Success, user found!", user: user });
+        res.status(200).json({ message: "Success, user found!", user });
     }
     catch (error) {
-        res.status(500).json({ message: "User not found!", error: error });
+        console.error("Error fetching user:", error);
+        res.status(500).json({ message: "User not found!", error: error.message });
     }
 });
 exports.default = getUser;

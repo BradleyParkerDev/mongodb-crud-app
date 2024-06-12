@@ -9,7 +9,7 @@ const controllers_1 = require("../controllers");
 const auth_1 = require("../auth");
 router.post('/register-user', controllers_1.usersController.registerUser);
 // routes using middleware
-router.get('/get-user', auth_1.authUtil.verifyUserAccessToken, controllers_1.usersController.getUser);
-router.put('/update-user', auth_1.authUtil.verifyUserAccessToken, controllers_1.usersController.updateUser);
-router.delete('/delete-user', auth_1.authUtil.verifyUserAccessToken, controllers_1.usersController.deleteUser);
+router.get('/get-user', auth_1.authUtil.authorizeUser, controllers_1.usersController.getUser);
+router.put('/update-user', auth_1.authUtil.authorizeUser, controllers_1.usersController.updateUser);
+router.delete('/delete-user', auth_1.authUtil.authorizeUser, controllers_1.usersController.deleteUser);
 exports.default = router;

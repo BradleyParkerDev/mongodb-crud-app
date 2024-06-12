@@ -7,9 +7,9 @@ import { authUtil } from '../auth';
 router.post('/register-user', usersController.registerUser) 
 
 // routes using middleware
-router.get('/get-user', authUtil.verifyUserAccessToken,usersController.getUser) 
-router.put('/update-user', authUtil.verifyUserAccessToken,usersController.updateUser) 
-router.delete('/delete-user', authUtil.verifyUserAccessToken,usersController.deleteUser) 
+router.get('/get-user', authUtil.authorizeUser,usersController.getUser) 
+router.put('/update-user', authUtil.authorizeUser,usersController.updateUser) 
+router.delete('/delete-user', authUtil.authorizeUser,usersController.deleteUser) 
 
 
 
