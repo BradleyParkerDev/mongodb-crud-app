@@ -38,7 +38,7 @@ const loginUser = async (req:Request , res:Response) => {
         }
 
         const accessToken = await authUtil.generateAccessToken(accessTokenUserData)
-        return res.status(200).json({message: "User has successfully logged in!", accessToken: accessToken});
+        return res.status(200).json({message: "User has successfully logged in!", accessToken});
     }
     
 

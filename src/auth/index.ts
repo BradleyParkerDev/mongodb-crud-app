@@ -5,7 +5,7 @@ import generatePasswordHash from "./hashing/generatePasswordHash";
 import verifyUserAccessToken from "./middleware/verifyUserAccessToken";
 
 // token
-import generateAccessToken from "./token/generateAccessTokens";
+import generateAccessToken from "./token/generateAccessToken";
 
 // validation
 import validatePassword from "./validation/validatePassword";

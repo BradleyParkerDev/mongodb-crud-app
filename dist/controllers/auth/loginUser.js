@@ -40,7 +40,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             emailAddress: foundUser.emailAddress
         };
         const accessToken = yield auth_1.authUtil.generateAccessToken(accessTokenUserData);
-        return res.status(200).json({ message: "User has successfully logged in!", accessToken: accessToken });
+        return res.status(200).json({ message: "User has successfully logged in!", accessToken });
     }
 });
 exports.default = loginUser;

@@ -9,7 +9,7 @@ const generatePasswordHash_1 = __importDefault(require("./hashing/generatePasswo
 //  middleware
 const verifyUserAccessToken_1 = __importDefault(require("./middleware/verifyUserAccessToken"));
 // token
-const generateAccessTokens_1 = __importDefault(require("./token/generateAccessTokens"));
+const generateAccessToken_1 = __importDefault(require("./token/generateAccessToken"));
 // validation
 const validatePassword_1 = __importDefault(require("./validation/validatePassword"));
 exports.authUtil = {
@@ -18,7 +18,7 @@ exports.authUtil = {
     // middleware
     verifyUserAccessToken: verifyUserAccessToken_1.default,
     // token
-    generateAccessToken: generateAccessTokens_1.default,
+    generateAccessToken: generateAccessToken_1.default,
     // validation
     validatePassword: validatePassword_1.default
 };

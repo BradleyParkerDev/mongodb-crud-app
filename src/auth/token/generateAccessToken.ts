@@ -8,9 +8,12 @@ interface UserData {
     emailAddress: string;
 }
 
-export const generateAccessToken = async (userData: UserData): Promise<{ accessToken: string;}> => {
+export const generateAccessToken = async (userData: UserData): Promise<string> => {
     // Calculate expiration time: 7 days in seconds
     const accessTokenExp = Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60;
+
+    // Calculate expiration time: 2 minutes in seconds
+    // const accessTokenExp = Math.floor(Date.now() / 1000) + 2 * 60;
 
     // Prepare keys
     const accessTokenSecretKey = new TextEncoder().encode(process.env.ACCESS_TOKEN_SECRET_KEY!);
@@ -28,7 +31,8 @@ export const generateAccessToken = async (userData: UserData): Promise<{ accessT
         .setExpirationTime(accessTokenExp)
         .sign(accessTokenSecretKey);
 
-    return { accessToken };
+    return accessToken; // Return the token directly
 };
 
 export default generateAccessToken;
+
